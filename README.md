@@ -16,20 +16,47 @@ git clone https://github.com/BrandonCrowther/nixos-local.git
 cd nixos-local
 ```
 
-2. Build and apply the configuration:
+2. Configure your disk device:
 ```bash
-sudo nixos-rebuild switch --flake .#nixos-dev
+# Copy the example environment file
+cp .env.example .env
+
+# Find your disk device
+lsblk
+
+# Edit .env and set DISK_DEVICE to your disk (e.g., /dev/nvme0n1, /dev/sda)
+nano .env
 ```
 
-3. Reboot your system
+3. Partition and format the disk (WARNING: This will erase all data!):
+```bash
+# Load environment variables
+source .env
+
+# Run disko to partition and format
+sudo nix run github:nix-community/disko -- --mode disko ./disk-config.nix
+```
+
+4. Install NixOS:
+```bash
+# Source the environment variables again
+source .env
+
+# Install NixOS with the flake configuration
+sudo nixos-install --flake .#nixos-dev
+```
+
+5. Reboot your system
 
 ## Project Structure
 
 ```
 .
 ├── flake.nix           # Flake configuration with inputs and outputs
+├── disk-config.nix     # Disko disk partitioning configuration
 ├── configuration.nix   # System-level NixOS configuration
 ├── home.nix           # User-level home-manager configuration
+├── .env.example        # Example environment variables
 ├── CLAUDE.MD          # Project roadmap and development phases
 └── README.md          # This file
 ```

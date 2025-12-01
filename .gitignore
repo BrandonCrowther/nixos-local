@@ -5,6 +5,9 @@ result-*
 # Nix store symlinks
 *.drv
 
+# Environment files
+.env
+
 # Editor files
 .vscode/
 .idea/
