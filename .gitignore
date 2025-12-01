@@ -1,0 +1,17 @@
+# Nix build artifacts
+result
+result-*
+
+# Nix store symlinks
+*.drv
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
