@@ -13,7 +13,7 @@ in
         content = {
           type = "gpt";
           partitions = {
-            ESP = {
+            boot = {
               size = "512M";
               type = "EF00";
               content = {

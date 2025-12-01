@@ -6,7 +6,7 @@
 
   # Bootloader configuration
   boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.efi.canTouchEfiVariables = false;
 
   # Networking
   networking.hostName = "nixos-dev";
